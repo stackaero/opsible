@@ -1,0 +1,38 @@
+---
+# tasks file for apache-maven
+#
+# - name: Install Java 1.7
+#   yum: name=java-1.7.0-openjdk state=present
+#
+#   - name: Download Apache Maven 
+#     get_url: url=http://www-eu.apache.org/dist/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz dest=/tmp/apache-maven-3.3.9-bin.tar.gz
+#
+#     - name: Untar Maven 
+#       shell: chdir=/tmp creates=/opt/apache-maven-3.3.9 tar -zxf apache-maven-3.3.9-bin.tar.gz -C /opt
+#
+#       - name: setting path
+#         file:
+#             state=link
+#                 src=/opt/apache-maven-3.3.9/bin/mvn
+#                     dest=/usr/local/bin/mvn
+#
+#                     # Manual setting way step-by-step in programmatically
+#                     #- name: Setting java_home and mave_home
+#                     #  lineinfile:
+#                     #    dest: /home/ec2-user/.bash_profile
+#                     #    regexp: "{{ item.regexp }}"
+#                     #    line: "{{ item.line }}"
+#                     #  with_items:
+#                     #    - { regexp: '^JAVA_HOME', line: 'export JAVA_HOME=/usr/lib/jvm/jre' }
+#                     #    - { regexp: '^M2_HOME', line: 'export M2_HOME=/opt/apache-maven-3.3.9' }
+#                     #    - { regexp: '^M2', line: 'export M2=$M2_HOME/bin' }
+#                     #    - { regexp: '^PATH', line: 'export PATH=$M2:$PATH' }
+#
+#                     #- name: source bash_profile
+#                     #  action: shell source /home/ec2-user/.bash_profile
+#
+#
+#                     #after starting instance need to use this command before check maven
+#                     # source .bash_profile
+#                     #If you install mavin as step-by-step programmatically
+#
