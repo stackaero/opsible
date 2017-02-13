@@ -1,0 +1,6 @@
+---
+- include: main_ubuntu.yml
+  when: ansible_os_family == "ubuntu"
+
+- include: main_rhel.yml
+  when: ansible_os_family == "RedHat"
