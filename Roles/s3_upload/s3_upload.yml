@@ -5,7 +5,7 @@
   vars:
     bucketname: skare
   tasks:
-    - name: upload file
+    - name: uploading file
       s3:
         bucket: "{{ bucketname }}"
         object: /backup/database/test.txt
