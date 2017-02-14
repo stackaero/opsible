@@ -1,0 +1,10 @@
+---
+
+- hosts: localhost
+  
+ 
+  
+  roles:
+    - sg
+    - ec2
+  
