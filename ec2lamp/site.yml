@@ -1,0 +1,36 @@
+---
+
+- name: setup ec2
+  hosts: localhost
+  roles:
+    - ec2
+    
+- name: apply common configuration to all nodes
+  hosts: devops_secgrp
+  remote_user: ec2-user
+  become: yes
+  become_method: sudo
+  roles:
+    - common
+
+#- name: configure and deploy the webservers and application code
+#  hosts: devops_secgrp
+  
+
+ # roles:
+  #  - web
+
+- name: deploy MySQL and configure the databases
+  hosts: devops_secgrp
+  remote_user: ec2-user
+  become: yes
+  become_method: sudo
+  vars:
+    mysqlservice: mysqld
+    mysql_port: 3306
+    dbuser: foouser
+    dbname: foodb
+    upassword: abc
+
+  roles:
+    - db
