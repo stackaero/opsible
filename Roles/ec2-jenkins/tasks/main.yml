@@ -1,0 +1,9 @@
+---
+- name: Jenkins - install | Install java
+  yum: name=java state=installed
+
+- name: Jenkins - install | Install Jenkins 2.0
+  yum: pkg=http://pkg.jenkins-ci.org/redhat-rc/jenkins-2.0-1.1.noarch.rpm state=installed
+
+- name: Jenkins - install | Start and enable Jenkins 2.0
+  service: name=jenkins state=started enabled=yes
