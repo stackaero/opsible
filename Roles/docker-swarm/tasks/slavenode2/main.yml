@@ -1,0 +1,17 @@
+---
+#checks whether docker is installed or not
+
+- name: check whether docker is installed
+  shell: docker -v
+  register: docker_version
+  
+#installs docker if not present 
+
+- name: install docker if not present
+  shell: curl -fsSL https://get.docker.com | sh
+  when: docker_version == 1
+ 
+#Add swarm worker node on slave
+
+- name: Join the pending Swarm worker nodes.
+  shell: docker swarm join --token {{ hostvars [groups['master'][0]] ['managertoken'] }} {{ groups['master'][0] }}:2377

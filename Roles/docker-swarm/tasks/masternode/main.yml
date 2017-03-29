@@ -1,0 +1,59 @@
+---
+#checks whether docker is installed or not
+
+- name: check whether docker is installed
+  shell: docker -v
+  register: docker_version
+
+#install docker if not present 
+
+- name: install docker 
+  shell: curl -fsSL https://get.docker.com | sh
+  when: docker_version == 1
+
+
+#Add swarm manager node 
+
+- name: Init "Swarm Mode" on the first manager.
+  shell: docker swarm init --advertise-addr {{ groups['master'][0] }}:2377
+  register: docker_token_msg
+ 
+ 
+#prints the registered token message
+
+- debug:
+    msg: "THis is the hostvars form the above command  {{ docker_token_msg.stdout }}"
+  
+#registers only the token 
+
+- name: register the token
+  shell: docker swarm join-token -q worker
+  register: docker_worker_token
+  
+#prints only the token
+
+- debug:
+    msg: "THis is the hostvars form the above command  {{ docker_worker_token.stdout }}"
+
+#captures the token into the variable managetoken
+
+- name: capture token into managetoken
+  set_fact:
+    managertoken: "{{ docker_worker_token.stdout }}"
+    
+    
+    
+    
+    
+
+    
+    
+
+
+  
+  
+  
+     
+  
+
+
