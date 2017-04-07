@@ -1,0 +1,39 @@
+- name: master_instance
+  hosts: master
+  remote_user: ubuntu
+  become: yes
+  become_method: sudo
+  become_user: root
+  
+  roles:
+    - masternode
+    
+- name: node1_docker
+  hosts: slave1
+  remote_user: ubuntu
+  become: yes
+  become_method: sudo
+  become_user: root
+
+  roles:
+    - slavenode
+    
+- name: node2_instance
+  remote_user: ubuntu
+  hosts: slave2
+  become: yes
+  become_method: sudo
+  become_user: root
+
+  roles:
+    - slavenode2
+
+- name: master_instance
+  remote_user: ubuntu
+  hosts: master
+  become: yes
+  become_method: sudo
+  become_user: root
+  
+  roles:
+    - create_container

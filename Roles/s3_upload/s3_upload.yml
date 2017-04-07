@@ -1,0 +1,14 @@
+---
+- hosts: localhost
+  gather_facts: no
+  connection: local 
+  vars:
+    bucketname: skare
+  tasks:
+    - name: uploading file
+      s3:
+        bucket: "{{ bucketname }}"
+        object: /backup/database/test.txt
+        src: test.txt
+        overwrite: no
+        mode: create 

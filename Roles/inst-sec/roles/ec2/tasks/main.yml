@@ -1,0 +1,10 @@
+- ec2:
+    region: us-west-2
+    key_name: NewVMkp
+    instance_type: t2.micro
+    image: ami-7c803d1c
+    wait: yes
+    group: mysec
+    count: 1
+    vpc_subnet_id: subnet-5ca2793b
+    assign_public_ip: yes
